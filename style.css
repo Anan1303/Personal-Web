@@ -136,6 +136,25 @@ nav ul li a:hover::after{
 .tab-contents.active-tab{
     display: block;
 }
+.about-col-1 img:hover {
+    transform: scale(1.1);
+    transition: transform 0.5s;
+}
+
+.tab-contents {
+    border-radius: 10px;
+    overflow: hidden;
+    transition: border-radius 0.5s;
+}
+
+.tab-contents.active-tab {
+    border-radius: 10px;
+}
+#self-description {
+    font-size: 18px;
+    color: #ababab;
+}
+
 
 /* -------------services------------- */
 #services{
@@ -316,4 +335,19 @@ form .btn2{
 }
 .copyright i{
     color: orange;
+}
+
+/* ---them hieu ung cho dong chu------ */
+/* Hiệu ứng cho "Student of HCMUTE" */
+.header-text p.active-text {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+/* Hiệu ứng cho "Hi, I'm An An" */
+.header-text h1 span.active-text {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 1s ease, transform 1s ease;
 }

@@ -16,7 +16,7 @@
                 <li><a href="#header">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#services">Services</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#portfolio">Homework</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
@@ -35,9 +35,9 @@
             </div>
             <div class="about-col-2">
                 <h1 class="sub-title">About Me</h1>
-                <p>My full name is Diep Hoai An.
-                    I am 20 years old, from Ben Tre. <br>
-                    I am a third-year Information Technology student of Ho Chi Minh City
+                <p id="self-description">My full name is Diep Hoai An. 
+                    I am 20 years old, from Ben Tre. 
+                    I am a third-year Information Technology student of Ho Chi Minh City 
                     University of Technology and Education.</p>
 
                 <div class="tab-titles">
@@ -47,10 +47,11 @@
                 </div>
                 <div class="tab-contents active-tab" id="skills">
                     <ul>
+                        <li><span>IT</span><br>Basic programming</li>
                         <li><span>Adobe </span><br>Using Illustrator, Photoshop,...</li>
                         <li><span>Office Information</span><br>Using MS Word, MS PowerPoint, Exel</li>
                         <li><span>Language</span><br>English</li>
-                        <li><span>IT</span><br>Basic programming</li>
+                        
                     </ul>
                 </div>
                 <div class="tab-contents" id="experience">
@@ -58,6 +59,7 @@
                         <li><span>9/2021 - Current </span><br>Studying at HCMUTE</li>
                         <!-- <li><span>9/2021 - Current </span><br>Class monitor of class 21110FIE1,4</li> -->
                         <li><span>10/2021 - 7/2023 </span><br>Media team's member of FIT</li>
+                        <li><span>10/2023 - Current </span><br>Media team's member of FIE</li>
                     </ul>
                 </div>
                 <div class="tab-contents" id="education">
@@ -174,6 +176,60 @@
         event.currentTarget.classList.add("active-link");
         document.getElementById(tabname).classList.add("active-tab");
     }
+
+    // --------them hieu ung cho dong chu --------
+    // Hàm thực hiện hiệu ứng gõ văn bản
+    function typeText(element, text, index, delay) {
+        return new Promise((resolve) => {
+            if (index <= text.length) {
+                element.innerHTML = text.slice(0, index);
+                index++;
+                setTimeout(function () {
+                    resolve(typeText(element, text, index, delay));
+                }, delay); // Thời gian giữa mỗi ký tự
+            } else {
+                resolve();
+            }
+        });
+    }
+
+    // Hiệu ứng cho dòng "Student of HCMUTE"
+    const studentText = document.querySelector(".header-text p");
+
+    // Hiệu ứng cho "Hi, I'm An An"
+    const anText = document.querySelector(".header-text h1 span");
+
+    studentText.classList.add("active-text");
+
+    // Bắt đầu hiệu ứng cho "Student of HCMUTE"
+    typeText(studentText, "Student of HCMUTE", 0, 100).then(() => {
+        // Lấy vị trí kết thúc của "Student of HCMUTE"
+        const studentTextEndIndex = studentText.innerText.length;
+        
+        // Sau khi hoàn thành hiệu ứng "Student of HCMUTE," thực hiện hiệu ứng cho "Hi, I'm An An" bắt đầu từ vị trí kết thúc của "Student of HCMUTE"
+        anText.classList.add("active-text");
+        typeText(anText, "Hi, I'm An An", studentTextEndIndex, 100);
+    });
+
+    //them hieu ung o trang about
+    // Hàm thực hiện hiệu ứng gõ từng chữ một
+    function typeText(element, text, index) {
+        if (index <= text.length) {
+            element.innerHTML = text.slice(0, index);
+            index++;
+            setTimeout(function () {
+                typeText(element, text, index);
+            }, 50); // Thời gian giữa mỗi ký tự (50ms)
+        }
+    }
+
+    // Lấy đối tượng phần tử
+    const selfDescription = document.getElementById("self-description");
+
+    // Thực hiện hiệu ứng gõ từng chữ một cho dòng chữ
+    typeText(selfDescription, selfDescription.innerHTML, 0);
+
+
 </script>
 </body>
 </html>
